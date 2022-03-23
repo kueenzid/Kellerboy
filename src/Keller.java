@@ -9,6 +9,7 @@ public class Keller {
 
     public void push(String string) {
         keller.addLast(string);
+        printKeller();
     }
 
     public void pop() {
