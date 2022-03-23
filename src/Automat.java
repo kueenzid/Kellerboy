@@ -28,7 +28,7 @@ public class Automat {
 
     public void q1(List<String> input, Keller keller) throws Exception {
         if (input.size() == 0 && keller.getLast().matches("\\d+")) {
-            System.out.println("Resulat: " + keller.getLast());
+            keller.setResult(keller.getLast());
             keller.pop();
             q2(input, keller);
         } else if (!input.get(0).matches("\\d") && keller.getLast().matches("\\d+")) {
@@ -50,8 +50,6 @@ public class Automat {
 
     public void q2(List<String> input, Keller keller) throws Exception {
         if (input.size() == 0 && keller.getLast().equals("$")) {
-            keller.pop();
-            keller.push("$");
             q3(input, keller);
         } else {
             throw new Exception();
@@ -59,10 +57,12 @@ public class Automat {
     }
 
     public void q3(List<String> input, Keller keller) {
+        System.out.println("Resulat: " + keller.getResult());
         Main.run(Main.getTerm());
     }
 
     public String operate(String a, String b, String operand) throws Exception {
+        System.out.println(a + " " + operand + " " + b + " =");
         switch (operand) {
             case "+":
                 return String.valueOf(Integer.parseInt(a) + Integer.parseInt(b));
